@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var server = require('http').createServer(app);
 
+app.set('view engine', 'jade');
 app.use(bodyParser());
 
 // var textParser = bodyParser.text();
@@ -12,20 +13,7 @@ server.listen(3000, function(){
 });
 
 app.get('/', function(req, res){
-  res.send('Hello, Express!')
-});
-
-app.get('/hi', function(req, res) {
-  res.send('Hi!')
-});
-
-app.get('/users/:userId', function(req, res) {
-  res.send('<h1>Hello, user #' + req.params.userId + "!");
-});
-
-app.post('/users', function(req, res) {
-  console.log(req.body)
-  res.send("Creating a new user with the name " + req.body.username + ".");
+  res.render("home.jade", { title: "Having Fun With Express"});
 });
 
 
